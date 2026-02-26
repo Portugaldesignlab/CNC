@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AxisForge AI — Intelligent CNC Machining Platform. Upload STEP or IGES files and generate production-ready G-code for wood, stone, and composites." />
+    <meta name="keywords" content="CNC, G-code, STEP, IGES, machining, CAM, toolpath, AI, wood, stone, composites" />
+    <meta property="og:title" content="AxisForge AI — CNC Machining Platform" />
+    <meta property="og:description" content="Upload STEP/IGES files and generate production-ready G-code for any CNC machine." />
+    <meta property="og:type" content="website" />
+    <title>AxisForge AI — CNC Machining Platform</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      /* Critical above-the-fold styles to prevent FOUC */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        background: #0a0e1a;
+        color: #e2e8f0;
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      /* Loading splash */
+      #splash {
+        position: fixed; inset: 0;
+        background: #0a0e1a;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 20px; z-index: 9999;
+        transition: opacity 0.4s ease;
+      }
+      #splash.hidden { opacity: 0; pointer-events: none; }
+      #splash-logo {
+        font-family: 'Bebas Neue', 'Impact', sans-serif;
+        font-size: 48px; letter-spacing: 0.15em;
+        color: #f1f5f9;
+      }
+      #splash-logo span { color: #0ea5e9; }
+      #splash-sub {
+        font-size: 11px; color: #475569;
+        letter-spacing: 0.25em; text-transform: uppercase;
+      }
+      #splash-bar {
+        width: 200px; height: 2px;
+        background: #1e293b; border-radius: 2px; overflow: hidden;
+      }
+      #splash-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #0ea5e9, #6366f1);
+        border-radius: 2px;
+        animation: load 1.2s ease forwards;
+      }
+      @keyframes load {
+        0% { width: 0%; }
+        60% { width: 80%; }
+        100% { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading splash screen -->
+    <div id="splash">
+      <div id="splash-logo">AXISFORGE <span>AI</span></div>
+      <div id="splash-sub">Intelligent CNC Machining Platform</div>
+      <div id="splash-bar"><div id="splash-fill"></div></div>
+    </div>
+
+    <!-- React app mounts here -->
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Hide splash once React has loaded
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const splash = document.getElementById('splash');
+          if (splash) {
+            splash.classList.add('hidden');
+            setTimeout(() => splash.remove(), 500);
+          }
+        }, 1400);
+      });
+    </script>
+  </body>
+</html>
